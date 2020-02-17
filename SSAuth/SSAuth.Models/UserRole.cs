@@ -13,7 +13,7 @@ namespace SSAuth.Models
         public string UserChanged { get; set; }
         public DateTime? DateChanged { get; set; }
 
-        public virtual AuthUser AuthUser { get; set; }
+        // public virtual AuthUser AuthUser { get; set; }
         public virtual Role Role { get; set; }
     }
 }

@@ -159,6 +159,11 @@ namespace SSAuth.Data.DBContext
                     .HasColumnName("last_name")
                     .HasColumnType("varchar(50)");
 
+                entity.Property(e => e.LoginId)
+                    .IsRequired()
+                    .HasColumnName("login_id")
+                    .HasColumnType("varchar(50)");
+
                 entity.Property(e => e.Password)
                     .IsRequired()
                     .HasColumnName("password")
@@ -179,11 +184,6 @@ namespace SSAuth.Data.DBContext
                     .HasColumnName("user_changed")
                     .HasColumnType("varchar(255)");
 
-                entity.Property(e => e.Username)
-                    .IsRequired()
-                    .HasColumnName("username")
-                    .HasColumnType("varchar(50)");
-
                 entity.HasOne(d => d.AuthGroup)
                     .WithMany(p => p.AuthUser)
                     .HasForeignKey(d => d.AuthGroupId)
@@ -196,7 +196,7 @@ namespace SSAuth.Data.DBContext
                 entity.ToTable("login_history");
 
                 entity.HasIndex(e => e.AuthUserId)
-                    .HasName("auth_user_id");
+                    .HasName("login_history_ibfk_1");
 
                 entity.Property(e => e.LoginHistoryId)
                     .HasColumnName("login_history_id")
@@ -218,6 +218,10 @@ namespace SSAuth.Data.DBContext
                     .HasColumnName("login_date")
                     .HasColumnType("datetime");
 
+                entity.Property(e => e.LoginId)
+                    .HasColumnName("login_id")
+                    .HasColumnType("varchar(50)");
+
                 entity.Property(e => e.UserAdded)
                     .IsRequired()
                     .HasColumnName("user_added")
@@ -227,11 +231,11 @@ namespace SSAuth.Data.DBContext
                     .HasColumnName("user_changed")
                     .HasColumnType("varchar(255)");
 
-                entity.HasOne(d => d.AuthUser)
+                /*entity.HasOne(d => d.AuthUser)
                     .WithMany(p => p.LoginHistory)
                     .HasForeignKey(d => d.AuthUserId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("login_history_ibfk_1");
+                    .HasConstraintName("login_history_ibfk_1");*/
             });
 
             modelBuilder.Entity<Role>(entity =>
@@ -351,11 +355,11 @@ namespace SSAuth.Data.DBContext
                     .HasColumnName("user_changed")
                     .HasColumnType("varchar(255)");
 
-                entity.HasOne(d => d.AuthUser)
+                /*entity.HasOne(d => d.AuthUser)
                     .WithMany(p => p.UserRole)
                     .HasForeignKey(d => d.AuthUserId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("user_role_ibfk_2");
+                    .HasConstraintName("user_role_ibfk_2");*/
 
                 entity.HasOne(d => d.Role)
                     .WithMany(p => p.UserRole)
@@ -408,11 +412,11 @@ namespace SSAuth.Data.DBContext
                     .HasColumnName("user_changed")
                     .HasColumnType("varchar(255)");
 
-                entity.HasOne(d => d.AuthUser)
+                /*entity.HasOne(d => d.AuthUser)
                     .WithMany(p => p.UserSecurityQuestion)
                     .HasForeignKey(d => d.AuthUserId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("user_security_question_ibfk_2");
+                    .HasConstraintName("user_security_question_ibfk_2");*/
 
                 entity.HasOne(d => d.SecurityQuestion)
                     .WithMany(p => p.UserSecurityQuestion)

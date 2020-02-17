@@ -7,7 +7,6 @@ namespace SSAuth.Models
     {
         public AuthUser()
         {
-            LoginHistory = new HashSet<LoginHistory>();
             UserRole = new HashSet<UserRole>();
             UserSecurityQuestion = new HashSet<UserSecurityQuestion>();
         }
@@ -17,7 +16,7 @@ namespace SSAuth.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
-        public string Username { get; set; }
+        public string LoginId { get; set; }
         public string Password { get; set; }
         public string Status { get; set; }
         public string UserAdded { get; set; }
@@ -26,7 +25,6 @@ namespace SSAuth.Models
         public DateTime? DateChanged { get; set; }
 
         public virtual AuthGroup AuthGroup { get; set; }
-        public virtual ICollection<LoginHistory> LoginHistory { get; set; }
         public virtual ICollection<UserRole> UserRole { get; set; }
         public virtual ICollection<UserSecurityQuestion> UserSecurityQuestion { get; set; }
     }

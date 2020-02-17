@@ -15,6 +15,7 @@ using System.Net.Mail;
 using System.Net;
 using SSAuth.Data.DBContext;
 using Microsoft.EntityFrameworkCore;
+using SSAuth.Repository;
 
 namespace SSAuth
 {
@@ -39,6 +40,8 @@ namespace SSAuth
             });
 
             services.AddDbContext<SSAuthContext>(Options => Options.UseMySql(Configuration.GetConnectionString("AuthDevConnection")));
+
+            services.AddSingleton<IAuthMethod, SHA256AuthMethod>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
